@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,92 +11,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
     crossorigin="anonymous"></script>
-</head>
-<style>
-  body {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: 30% 45%;
-    background: #1B2029;
-    color: white;
-    font-weight: 100px;
-  }
-  #caixa {
-    border: solid 2px rgb(31, 32, 121);
-    margin-left: 21%;
-    width: 20%;
-    height: 100px;
-    text-align: center;
-    color: whitesmoke;
-    border-radius: 50px;
-    font-style: oblique;
-    font-family: arial, sans-serif;
-    position: absolute; 
-    margin-top: 15%;
-    
-  }
-
-  #meta {
-    border: solid 2px rgb(31, 32, 121);
-    margin-left: 45%;
-    width: 20%;
-    height: 100px;
-    text-align: center;
-    color: whitesmoke;
-    border-radius: 50px;
-    font-style: oblique;
-    font-family: arial, sans-serif;
-    position: absolute;
-    margin-top: 15%;
-    
-  }
-  #alcançar1 {
-    background-color: none;
-    border: solid 2px rgb(31, 32, 121);
-    margin-left: 70%; 
-    width: 20%;
-    height: 100px;
-    text-align: center;
-    color: white;
-    border-radius: 50px;
-    font-style: oblique;
-    font-family: arial, sans-serif;
-    margin-top: 15%;
-  }
-  a {
-    text-decoration: none;
-  }
-  .btn-glyphicon {
-    padding: 8px;
-    margin-right: 4px;
-  }
-  .icon-btn {
-    padding: 1px 15px 3px 2px;
-    border-radius: 50px;
-  }
-  #cicle1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #F0F8FF, #6495ED);
-    clip-path: circle(30% at right 100%);
-    z-index: -1;
-    }
-    #cicle2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #F0F8FF, #6495ED);
-    clip-path: circle(40% at left 0%);
-    z-index: -1;
-  }
-        
-</style>
+    <link rel="stylesheet" href="style.css">
+</head> 
 
 <body>
 <?php
@@ -105,7 +22,7 @@ $id = $_SESSION['sessao_id'];
 ?>
   <div id="corpo">
       <div id="caixa" class="btn btn-outline-dark">
-      <a value='<?php echo $id?>' href="cadastro_saldo.php">
+      <a href="cadastro_saldo.php">
         <h2> Saldo:</h2>
       </a>
       <?php
@@ -116,7 +33,7 @@ $id = $_SESSION['sessao_id'];
         ?>
     </div>
     <div id="meta" class="btn btn-outline-dark">
-      <a value='<?php echo $id?>' href="alterar_extrato.php">
+      <a href="alterar_extrato.php">
         <h2>Despesa:</h2>
       </a>
       <?php
@@ -128,7 +45,7 @@ $id = $_SESSION['sessao_id'];
     </div>
     
     <div id="alcançar1" class="btn btn-outline-dark">
-      <a value='<?php echo $id?>' href="metas.php">
+      <a href="metas.php">
         <h2>Meta:</h2>
       </a>
       <?php
@@ -142,33 +59,6 @@ $id = $_SESSION['sessao_id'];
   </div>
   <div id="cicle1"></div>
     <div id="cicle2"></div>
- <!-- <style>
-   #select{
-    outline: none;
-    margin-top: -22%;
-    margin-left: 88%;
-   }
- </style>    
-<div id="select">
-<select name="menu" id="selecao" onchange="redirecionar()">
-  <option value="index.php">Adicionar saldo</option>
-  <option value="alterar_extrato.php">Adicionar despesa</option>
-  <option value="cadastro_usuario.php">Adicionar usuario</option>
-  <option value="alterar_usuario.php">Alterar Usuario</option>
-  <option value="excluir_usuario.php">Excluir</option>
-  <option value="sair.php">Sair</option>
-</select>
-</div>
-
-<script>
-function redirecionar(){
-  var site = document.getElementById('selecao').value;
- location.href = (site);
-
-}
- 
-</script>
--->
 <style>
 
 body{
@@ -265,10 +155,9 @@ body{
 			</div>
 			<ul class="nav" id="nav">
 				<li><a href="projeto_parte2.php">Home</a></li>
-				<li><a href="cadastro_usuario.php" value='<?php echo $id?>'>Usuario</a></li>
-        <li><a href="cadastro_conta.php" value='<?php echo $id?>'>Cadastrado Conta</a></li>
-				<li><a href="lista_registro.php" value='<?php echo $id?>'>Alterar</a></li>
-				<!-- <li><a href="lista_registro.php" value='<?php echo $id?>'>Excluir</a></li> -->
+				<li><a href="cadastro_usuario.php">Usuario</a></li>
+				<li><a href="lista_registro.php">Alterar</a></li>
+				<li><a href="zerar_saldo.php">Zerar saldo</a></li>
 				<li><a href="sair.php">Sair</a></li>
 
 			</ul>

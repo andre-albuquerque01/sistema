@@ -2,7 +2,7 @@
 include_once 'conexao1.php';
 $email = $_POST["email"];
 $senha = $_POST["senha"];
-$id = $_POST["id"];
+$id = $_GET["id"];
 $cadastro = $pdo->prepare("UPDATE `login` SET `usuario_login` = :email, `senha_login` = :senha
  WHERE `login`.`id_login` = :id;");
 $cadastro->execute(array(

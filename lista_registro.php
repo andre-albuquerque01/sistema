@@ -38,7 +38,7 @@ while($verificar = $recebe_consulta->fetch(PDO::FETCH_ASSOC)){
     <button value=".$verificar['id_login']." name='id' class='btn'>Alterar </button> </form><br/>";
 }
 ?> 
-<form href='projeto_parte2.php'>
+<form action='projeto_parte2.php'>
 <button type="submit" class="btn">Voltar</button></form><br/>
 <label><input type="submit" onclick="imprimir()" class="btn" value="Imprimir"></label>
 <script>

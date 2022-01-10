@@ -117,9 +117,7 @@ $id_conta =  intval($veri3['id_conta']);
     </form>
     <div id="cicle1"></div>
     <div id="cicle2"></div>
-    <div id="imagem"> 
-        <img src="https://raw.githubusercontent.com/giovannamoeller/sign-up-form/8e94664e87e1e591bf244d352e675dbd5167bcdf/assets/mobile.svg" style="width: 30%; height: 50%;  margin-left: 70%; margin-top: 0%; z-index: -1;">
-    </div> 
+    
 </body>
 
 </html>

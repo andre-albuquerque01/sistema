@@ -4,128 +4,124 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Cadastro extrato</title>
+    <title>Cadastro extrato</title>
 </head>
 <style>
-        body {
-            background: #1B2029;
-            color: white;
-            font-weight: 100px;
-        }
-        label {
-            /* display: flex;
+    body {
+        background: #1B2029;
+        color: white;
+        font-weight: 100px;
+    }
+
+    label {
+        /* display: flex;
             flex-direction: column;
             font-size: 18px;
             /* align-items: center; 
             z-index: 1000 */
-            margin-left: 18%;
-        }
-        p{
-            margin-left: 2%;
-            color: black;
-        }
-        input {
-            background:#90EE90;
-            width: 150px;
-            height: 22px;
-            color: black;
-            font-size: 14px;
-            padding: 0 0.5%;
-            margin-top: 1%;
-            outline: none;
-            border: 1px #040B18;
-            border-radius: 10px;
-            z-index: -1;
-            display: flex;
-            /* text-align: center; */
-            
-        }
-        select{
-            margin-left: 2%;
-            background:#90EE90;
-            width: 150px;
-            height: 22px;
-            color: black;
-            font-size: 14px;
-            padding: 0 0.5%;
-            margin-top: 1%;
-            outline: none;
-            border: 1px #040B18;
-            border-radius: 10px;
-            z-index: -1;
-            display: flex;
-            }
-        #button {
-            cursor: pointer;
-            border: none;
-            border-radius: 40px;
-            width: 150px;
-            height: 25px;
-            background: #104E8B;
-            font-size: 90%;
-            margin-left: 2%;
-            color: wheat;
-        }
-        #cicle1 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #F0F8FF, #6495ED);
-            clip-path: circle(30% at right 100%);
-            z-index: -1;
-        }
+        margin-left: 18%;
+    }
 
-        #cicle2 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #F0F8FF, #6495ED);
-            clip-path: circle(40% at left 0%);
-            z-index: -1;
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-       
-    </style>
+    p {
+        margin-left: 2%;
+        color: black;
+    }
+
+    input {
+        background: #90EE90;
+        width: 150px;
+        height: 22px;
+        color: black;
+        font-size: 14px;
+        padding: 0 0.5%;
+        margin-top: 1%;
+        outline: none;
+        border: 1px #040B18;
+        border-radius: 10px;
+        z-index: -1;
+        display: flex;
+        /* text-align: center; */
+
+    }
+
+    select {
+        margin-left: 2%;
+        background: #90EE90;
+        width: 150px;
+        height: 22px;
+        color: black;
+        font-size: 14px;
+        padding: 0 0.5%;
+        margin-top: 1%;
+        outline: none;
+        border: 1px #040B18;
+        border-radius: 10px;
+        z-index: -1;
+        display: flex;
+    }
+
+    #button {
+        cursor: pointer;
+        border: none;
+        border-radius: 40px;
+        width: 150px;
+        height: 25px;
+        background: #104E8B;
+        font-size: 90%;
+        margin-left: 2%;
+        color: wheat;
+    }
+
+    #cicle1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #F0F8FF, #6495ED);
+        clip-path: circle(30% at right 100%);
+        z-index: -1;
+    }
+
+    #cicle2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #F0F8FF, #6495ED);
+        clip-path: circle(40% at left 0%);
+        z-index: -1;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+</style>
+
 <body>
-<?php
-include 'conexao1.php';
-//include_once 'logado.php';
-session_start(); 
-$usuario_login = $_SESSION["sessao_id"];
-/* $consulta = $pdo->query("SELECT id_login FROM `login` WHERE usuario_login  LIKE '$usuario_login'");
-$veri = $consulta->fetch(PDO::FETCH_ASSOC);
-$id_login =  intval($veri['id_login']); */
+    <?php
+    include 'conexao1.php';
+    include_once 'logado.php';
+    $id = $_SESSION['sessao_id'];
+    $consulta2 = $pdo->query("SELECT * FROM `usuario` INNER JOIN conta ON usuario.id_usuario = conta.usuario_id_usuario INNER JOIN extrato ON conta.id_conta = extrato.conta_id_conta INNER JOIN login ON usuario.login_id_login = login.id_login WHERE usuario.login_id_login = $id");
+    $verificar = $consulta2->fetch(PDO::FETCH_ASSOC);
+    ?>
+    <div class="tudo">
+        <form action="recebe_saldo.php?id=<?= $verificar['id_conta'] ?>" method="POST">
+            <h2>Cadastro do extrato</h2>
+            <p>Tipo</p>
+            <select name="tipo_extrato">
+                <option value="saldo"> Depositar </option>
+                <option value="saldo"> Outros </option>
+            </select>
+            <p>Nome da despesa: <input type="text" name="nome_extrato" placeholder="Produto" aria-label="default input example"></p>
+            <p>Valor: <input type="number" name="valor_extrato" placeholder="Valor" aria-label="default input example"></p>
+            <p>Data: <input type="date" name="data_do_extrato" placeholder="Data" aria-label="default input example"></p>
+            <button type="submit" id="button" name="id_conta"> Cadastrar </button>
 
-$consulta2 = $pdo->query("SELECT id_usuario FROM `usuario` WHERE `login_id_login` = $usuario_login");
-$veri2 = $consulta2->fetch(PDO::FETCH_ASSOC);
-$id_usuario =  intval($veri2['id_usuario']);
-
-$consulta3 = $pdo->query("SELECT id_conta FROM `conta` WHERE `usuario_id_usuario` = $id_usuario");
-$veri3 = $consulta3->fetch(PDO::FETCH_ASSOC);
-$id_conta =  intval($veri3['id_conta']);
-?>
-    <form action="recebe_saldo.php" method="POST">
-        <h2>Cadastro do extrato</h2>
-        <p>Tipo</p>
-        <select name="tipo_extrato"> 
-            <option value="saldo"> Depositar </option>
-            <option value="saldo"> Outros </option>
-        </select>
-        <p>Nome da despesa: <input type="text" name="nome_extrato"  placeholder="Produto" aria-label="default input example"></p>
-        <p>Valor: <input type="number" name="valor_extrato" value='<?php echo $verificar["saldo_conta"] ?>'  placeholder="Valor" aria-label="default input example"></p>
-        <p>Data: <input type="date" name="data_do_extrato"  placeholder="Data" aria-label="default input example"></p>
-        <button type="submit" id="button"  name="id_conta" value='<?php echo $id_conta?>' > Cadastrar </button>
-     
-    </form>
+        </form>
+    </div>
     <div id="cicle1"></div>
     <div id="cicle2"></div>
-    <div id="imagem"> 
-        <img src="https://raw.githubusercontent.com/giovannamoeller/sign-up-form/8e94664e87e1e591bf244d352e675dbd5167bcdf/assets/mobile.svg" style="width: 30%; height: 50%;  margin-left: 70%; margin-top: 0%; z-index: -1;">
-    </div> 
 </body>
 
 </html>

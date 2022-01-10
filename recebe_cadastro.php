@@ -3,11 +3,6 @@ include_once 'conexao1.php';
 $usuario = $_POST ['usuario'];
 $senha = $_POST ['senha'];
 
-/*$cadastro = $pdo->prepare("INSERT INTO `login` (`usuario_login`, `senha_usuario`) VALUES (':usuario_login', ':senha_usuario');");
-$cadastro->execute(array(
-    ':usuario_login' => $usuario,
-    ':senha_usuario' => $senha
-));*/
 $cadastro = $pdo->prepare("INSERT INTO `login` (`usuario_login`, `senha_login`) VALUES (:usuario, :senha);");
 $cadastro->execute(array(
     ':usuario' => $usuario,

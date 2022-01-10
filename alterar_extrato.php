@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -87,23 +88,13 @@
     </style>
 <body>
 <?php
-//include_once 'logado.php';
+include_once 'logado.php';
 include 'conexao1.php';
-session_start();
 $id = $_SESSION['sessao_id'];
-/* $consulta = $pdo->query("SELECT id_login FROM `login` WHERE usuario_login  LIKE '$id'");
-$veri = $consulta->fetch(PDO::FETCH_ASSOC);
-$id_login =  intval($veri['id_login']); */
-
-$consulta2 = $pdo->query("SELECT id_usuario FROM `usuario` WHERE `login_id_login` = $id");
-$veri2 = $consulta2->fetch(PDO::FETCH_ASSOC);
-$id_usuario =  intval($veri2['id_usuario']);
-
-$consulta3 = $pdo->query("SELECT id_conta FROM `conta` WHERE `usuario_id_usuario` LIKE $id_usuario");
-$veri3 = $consulta3->fetch(PDO::FETCH_ASSOC);
-$id_conta =  intval($veri3['id_conta']);
+$consulta2 = $pdo->query("SELECT * FROM `usuario` INNER JOIN conta ON usuario.id_usuario = conta.usuario_id_usuario INNER JOIN extrato ON conta.id_conta = extrato.conta_id_conta INNER JOIN login ON usuario.login_id_login = login.id_login WHERE usuario.login_id_login = $id");
+$verificar = $consulta2->fetch(PDO::FETCH_ASSOC);
 ?>
-    <form action="alterar_recebe_extrato.php" method="POST">
+    <form action="alterar_recebe_extrato.php?id=<?=$verificar['id_conta']?>" method="POST">
         <h2>Cadastro do extrato</h2>
         <p>Tipo</p>
         <select name="tipo_extrato"> 
@@ -111,17 +102,15 @@ $id_conta =  intval($veri3['id_conta']);
             <option value="despesa"> Mercado </option>
             <option value="meta"> Outros</option>
         </select>
-        <p>Nome da despesa: <input type="text" name="nome_extrato"  placeholder="Produto" aria-label="default input example"></p>
-        <p>Valor: <input type="number" name="valor_extrato" value='<?php echo $verificar["saldo_conta"] ?>'  placeholder="Valor" aria-label="default input example"></p>
-        <p>Data: <input type="date" name="data_do_extrato"  placeholder="Data" aria-label="default input example"></p>
-        <button type="submit" id="button"  name="id_conta" value='<?php echo $id_conta?>' > Cadastrar </button>
+        <p>Nome da despesa: <input type="text" name="nome_extrato"  placeholder="Produto" aria-label="default input example" required></p>
+        <p>Valor: <input type="number" name="valor_extrato" placeholder="Valor" aria-label="default input example" required></p>
+        <p>Data: <input type="date" name="data_do_extrato"  placeholder="Data" aria-label="default input example" required></p>
+        <button type="submit" id="button"  name="id_conta"> Cadastrar </button>
      
     </form>
     <div id="cicle1"></div>
     <div id="cicle2"></div>
-    <div id="imagem"> 
-        <img src="https://raw.githubusercontent.com/giovannamoeller/sign-up-form/8e94664e87e1e591bf244d352e675dbd5167bcdf/assets/mobile.svg" style="width: 30%; height: 50%;  margin-left: 70%; margin-top: 0%; z-index: -1;">
-    </div> 
+    
 </body>
 
 </html>

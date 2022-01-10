@@ -70,18 +70,17 @@ body {
     </style>
 </head>
 <?php
-//include_once 'logado.php';
+include_once 'logado.php';
 include_once 'conexao1.php';
-session_start();
-$id = $_SESSION['sessao_nome'];
+$id = $_GET['id'];
 ?>
 <body>
     <h2 style="margin-left: 2%;">Cadastro Conta</h2>
-    <form action="recebe_conta.php" method="POST">
+    <form action="recebe_conta.php?id=<?=$id?>" method="POST">
             <p>Numero da conta: <input type="number" name="numero_conta"  placeholder="Numero da conta" aria-label="default input example" require></p>
             <p>Limite: <input type="number" step="0.01" name="limite_conta" placeholder="Limite" aria-label="default input example" require></p>
             <p>Saldo: <input type="number" step="0.01" name="saldo_conta"  placeholder="Saldo" aria-label="default input example" require></p>
-            <label><input type="submit" id="button" value="cadastrar" value='<?php echo $id ?>' style="margin-left: 2%; text-align: center; color:blanchedalmond"></label>
+            <label><input type="submit" id="button" value="cadastrar" style="margin-left: 2%; text-align: center; color:blanchedalmond"></label>
    <div id="cicle1"></div>
     <div id="cicle2"></div>
     <div id="imagem"> 

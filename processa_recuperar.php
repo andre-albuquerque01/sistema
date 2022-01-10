@@ -81,9 +81,9 @@ $verificar = $esqueci->fetch(PDO::FETCH_ASSOC);
 <body>
     <form action="processa_segunda_parte.php" method="POST">
         <h2>Recuperar a conta</h2>
-        <p>Email: <input type="email" value="<?php  echo $verificar["usuario_login"] ?>" name="email" require></p>
+        <p>Email: <input type="email" value="<?= $verificar["usuario_login"] ?>" name="email" require></p>
         <p>Senha: <input type="password"  name="senha" require></p>
-        <button type="submit" id="button" name="id" value="<?php  echo $verificar["id_login"] ?>" style="margin-left: 2%; color:white;">Cadastrar </button>
+        <button type="submit" id="button" name="id" value="<?= $verificar["id_login"] ?>" style="margin-left: 2%; color:white;">Cadastrar </button>
     </form>
     <div id="cicle1"></div>
     <div id="cicle2"></div>

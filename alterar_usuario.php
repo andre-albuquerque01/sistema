@@ -64,20 +64,16 @@
 </head>
 <body>
 <?php
-//include_once 'logado.php';
+include_once 'logado.php';
 include_once 'conexao1.php';
-session_start();
 $id = $_SESSION['sessao_id'];
-/* $id = $_POST["id"];
-$recebe_consulta = $pdo->query("SELECT * FROM `login` WHERE id_login LIKE ".$id);
-$verificar = $recebe_consulta->fetch(PDO::FETCH_ASSOC);  */ 
 ?>
 
-    <form action="processa_alterar_usuario.php" method="POST">
+    <form action="processa_alterar_usuario.php?id=<?=$id?>" method="POST">
     <h2 style="margin-left: 2%;">Alterar Login</h2>
     <p>Login <input type="text" name="email"></p>
     <p>senha <input  type="text" name="senha"></p>
-    <button type="submit" id="button" name="id" value='<?php $id ?>'> Alterar </button>
+    <button type="submit" id="button" name="id"> Alterar </button>
     </form>
     <div id="cicle1"></div>
     <div id="cicle2"></div>

@@ -8,10 +8,9 @@
 include_once 'conexao1.php';
 $senha = $_POST["senha"];
 $id = $_POST["id"];
-$cadastro = $pdo->prepare("UPDATE `login` SET `senha_login` = :senha WHERE `login`.`id_login` = :id;");
+$cadastro = $pdo->prepare("UPDATE `login` SET `senha_login` = :senha WHERE `login`.`id_login` = $id;");
 $cadastro->execute(array(
-    ':senha' => $senha,
-    ':id' => $id
+    ':senha' => $senha
 ));
 if($cadastro == TRUE){
     echo "<script> alert('Alterado Com Sucesso!') </script>";
