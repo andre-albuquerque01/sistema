@@ -73,7 +73,7 @@
 </head>
 <?php 
 include_once 'conexao1.php';
-
+include_once 'logado.php';
 $email = $_POST["email"];
 $esqueci = $pdo->query("SELECT * FROM `login` WHERE usuario_login LIKE '$email'");
 $verificar = $esqueci->fetch(PDO::FETCH_ASSOC); 

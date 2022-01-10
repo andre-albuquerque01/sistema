@@ -24,7 +24,7 @@
       }
 </style>
   <?php
-//include_once 'logado.php';
+include_once 'logado.php';
 include_once 'conexao1.php';
 session_start();
 $id = $_SESSION["sessao_id"];

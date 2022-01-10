@@ -1,8 +1,7 @@
 <?php 
 include_once 'logado.php';
-//session_start();
-session_destroy();
-//echo "<script> location.href = ('index.php')</script>";
+session_unset();
+echo "<script> location.href = ('index.php')</script>";
 
 
 ?>

@@ -16,7 +16,7 @@
 
 <body>
 <?php
-//include_once 'logado.php';
+include_once 'logado.php';
 session_start();
 $id = $_SESSION['sessao_id'];
 ?>
